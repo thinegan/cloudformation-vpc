@@ -1,0 +1,97 @@
+# Note: Total of 3 buckets will be deploy
+# This is due to each isolated functions
+#
+# https://forums.aws.amazon.com/thread.jspa?threadID=221113
+# Note : at this time ELB logging does not support server side encryption
+#
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+    This template to deploys S3 buckets
+    - Bucket 1, ELB logging and archive objects greater than 60 days.
+
+Parameters: 
+
+  PMServerEnv:
+    Description: "Server Environment name."
+    ConstraintDescription: "Choose an Environment from the drop down"
+    Type: "String"
+
+  PMRegionAStorage:
+    Description: "A reference to the Region Archive Storage"
+    Type: "String"
+
+Resources:
+
+  ############################################################################
+  # S3 Backup Data Encrypted Bucket
+  ############################################################################
+
+  S3Backup:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: "Private"
+      VersioningConfiguration:
+        Status: "Enabled"
+      LifecycleConfiguration:
+        Rules:
+        - Id: "MyBackupArchive"
+          Status: "Enabled"
+          ExpirationInDays: '365' # Complete Disposal/Deletion of Data after 1 year
+          Transition:
+            TransitionInDays: '60' # Move Data from S3 bucket to Archive after 60 days.
+            StorageClass: !Ref "PMRegionAStorage"
+    DeletionPolicy: "Retain"
+
+  S3BackupPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref "S3Backup"
+      PolicyDocument:
+        Statement:
+        - Sid: "DenyUnEncryptedObjectUploads"
+          Effect: "Deny"
+          Principal:
+            AWS: "*"
+          Action: "s3:PutObject"
+          Resource: !Join ["", ["arn:aws:s3:::", !Ref "S3Backup", "/*"]]
+          Condition:
+            StringNotEquals:
+              s3:x-amz-server-side-encryption: "AES256"
+
+  ############################################################################
+  # S3 Logging Bucket Data Encrypted Bucket
+  # https://forums.aws.amazon.com/thread.jspa?threadID=221113
+  # Note : at this time ELB logging does not support server side encryption
+  ############################################################################
+
+  S3Logging:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: "Private"
+      VersioningConfiguration:
+        Status: "Enabled"
+    DeletionPolicy: "Retain"
+
+  S3LoggingPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref "S3Logging"
+      PolicyDocument:
+        Statement:
+        - Sid: "AllowLogsObjectUploads"
+          Effect: "Allow"
+          Action: "s3:PutObject"
+          Resource: !Join ["", ["arn:aws:s3:::", !Ref "S3Logging", "/*"]]
+          Principal:
+            AWS: "*"
+
+Outputs:
+
+  S3Logging:
+    Description: "S3 Logging Bucket Name"
+    Value: !Ref "S3Logging"
+
+  S3Backup:
+    Description: "S3 Backup Bucket Name"
+    Value: !Ref "S3Backup"
