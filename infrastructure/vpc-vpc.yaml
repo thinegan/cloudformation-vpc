@@ -315,14 +315,20 @@ Outputs:
   MyPublicNetworkACL:
     Description: "A reference to the Public Network ACL"
     Value: !Ref "MyPublicNetworkACL"
+    Export:
+      Name: !Sub "${PMServerEnv}-MyPublicNetworkACL"
 
   MyPrivateNetworkACL: 
     Description: "A reference to the Private Network ACL"
     Value: !Ref "MyPrivateNetworkACL"
+    Export:
+      Name: !Sub "${PMServerEnv}-MyPrivateNetworkACL"
 
   PublicSubnets:
     Description: "A list of the public subnets"
     Value: !Join [ ",", [ !Ref "PublicSubnet1", !Ref "PublicSubnet2" ]]
+    Export:
+      Name: !Sub "${PMServerEnv}-PublicSubnets"
 
   PrivateSubnets:
     Description: "A list of the private subnets"
