@@ -59,11 +59,6 @@ Mappings:
   RegionMap:
     # Default North Virginia
     us-east-1:
-      # Amazon Linux AMI 2017.03.1 (HVM), SSD Volume Type
-      AMI: "ami-4fffc834"
-      # Update with your own cert ARN HERE!
-      # Assuming you have already upload to AWS Certificate Manager
-      CertARN: "arn:aws:acm:us-east-1:210406761874:certificate/6e8e02b1-bce8-43f3-9e00-23050cd6f1ff"
       # AStorage - The storage class to which you want the object to transition.
       AStorage: "GLACIER"
 ###############################################################################################################
