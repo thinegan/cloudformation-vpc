@@ -1,0 +1,100 @@
+# Note : The Cloudformation Security Group IP address is open by default (testing purpose).
+# You should update Security Group Access with your own IP Address to ensure your instances security.
+#
+# Prerequisites
+# Before you can start this process, you need the following:
+# - Your AWS account must have one VPC available to be created in the selected region
+# - Amazon EC2 key pair
+# - Installed Domain in Route 53.
+#
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+    This is a master template to create a VPC infrastructure.
+
+    Last Modified: 26th October 2017
+    Author: Thinegan Ratnam <thinegan@thinegan.com>
+
+###############################################################################################################
+
+Parameters: 
+
+  PMOWNIP:
+    Default: "0.0.0.0/0"
+    Description: "Update this with your own office/home public ip address"
+    Type: "String"
+
+  PMKeyName:
+    Description: "Enter an existing EC2 KeyPair. Default is mk2acc-nv."
+    Type: "String" 
+
+  PMTemplateURL:
+    Description: "Trying running from own directory/workstation."
+    Type: "String"
+
+  PMVpcCIDR:
+    Description: "VPC CIDR."
+    Type: "String"
+
+  PMPublicSubnet1CIDR:
+    Description: "VPC Public Subnet 1."
+    Type: "String"
+
+  PMPublicSubnet2CIDR:
+    Description: "VPC Public Subnet 2."
+    Type: "String"
+
+  PMPrivateSubnet1CIDR:
+    Description: "VPC Private Subnet 1."
+    Type: "String"
+
+  PMPrivateSubnet2CIDR:
+    Description: "VPC Private Subnet 2."
+    Type: "String"
+
+###############################################################################################################
+#
+# For any additional region & Env, you can add by yourself below.
+Mappings:
+  RegionMap:
+    # Default North Virginia
+    us-east-1:
+      # AStorage - The storage class to which you want the object to transition.
+      AStorage: "GLACIER"
+###############################################################################################################
+
+Resources:
+
+  MyIAMRole:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: !Sub "${PMTemplateURL}/vpc-iam.yaml"
+      TimeoutInMinutes: '5'
+      Parameters:
+        PMServerEnv: !Ref "AWS::StackName"
+
+  MyS3Bucket:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: !Sub "${PMTemplateURL}/vpc-s3bucket.yaml"
+      TimeoutInMinutes: '5'
+      Parameters:
+        PMServerEnv: !Ref "AWS::StackName"
+        PMRegionAStorage: !FindInMap ["RegionMap", !Ref "AWS::Region", "AStorage"]
+
+  MyVPC:
+    Type: "AWS::CloudFormation::Stack"
+    DependsOn:
+    - "MyS3Bucket"
+    Properties:
+      TemplateURL: !Sub "${PMTemplateURL}/vpc-vpc.yaml"
+      TimeoutInMinutes: '5'
+      Parameters:
+        PMServerEnv: !Ref "AWS::StackName"
+        PMVpcCIDR: !Ref "PMVpcCIDR"
+        PMPublicSubnet1CIDR: !Ref "PMPublicSubnet1CIDR"
+        PMPublicSubnet2CIDR: !Ref "PMPublicSubnet2CIDR"
+        PMPrivateSubnet1CIDR: !Ref "PMPrivateSubnet1CIDR"
+        PMPrivateSubnet2CIDR: !Ref "PMPrivateSubnet2CIDR"
+        PMFlowLogRole: !GetAtt "MyIAMRole.Outputs.VPCFlowLogRoleArn"
+
