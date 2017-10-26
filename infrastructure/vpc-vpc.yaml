@@ -74,7 +74,7 @@ Resources:
     Properties:
       VpcId: !Ref "VPC"
       CidrBlock: !Ref "PMPublicSubnet1CIDR"
-      AvailabilityZone: !Select [ '1', !GetAZs ]
+      AvailabilityZone: !Select [ '0', !GetAZs ]
       MapPublicIpOnLaunch: "True"
       Tags:
       - Key: "Name"
@@ -85,7 +85,7 @@ Resources:
     Properties:
       VpcId: !Ref "VPC"
       CidrBlock: !Ref "PMPublicSubnet2CIDR"
-      AvailabilityZone: !Select [ '2', !GetAZs ]
+      AvailabilityZone: !Select [ '1', !GetAZs ]
       MapPublicIpOnLaunch: "True"
       Tags:
       - Key: "Name"
@@ -210,21 +210,21 @@ Resources:
 
   MyNATGateway1EIP:
     Type: "AWS::EC2::EIP"
-    # Condition: "UseProdEnv"
+    Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
       Domain: "VPC"
 
   MyNATGateway2EIP:
     Type: "AWS::EC2::EIP"
-    # Condition: "UseProdEnv"
+    Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
       Domain: "VPC"
   
   MyNATGateway1:
     Type: "AWS::EC2::NatGateway"
-    # Condition: "UseProdEnv"
+    Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
       AllocationId:
@@ -235,7 +235,7 @@ Resources:
 
   MyNATGateway2:
     Type: "AWS::EC2::NatGateway"
-    # Condition: "UseProdEnv"
+    Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
       AllocationId:
@@ -246,7 +246,7 @@ Resources:
 
   MyNatPrivateRoute1:
     Type: "AWS::EC2::Route"
-    # Condition: "UseProdEnv"
+    Condition: "UseProdEnv"
     Properties:
       RouteTableId: !Ref "MyPrivateRouteTable1"
       DestinationCidrBlock: "0.0.0.0/0"
@@ -254,7 +254,7 @@ Resources:
 
   MyNatPrivateRoute2:
     Type: "AWS::EC2::Route"
-    # Condition: "UseProdEnv"
+    Condition: "UseProdEnv"
     Properties:
       RouteTableId: !Ref "MyPrivateRouteTable2"
       DestinationCidrBlock: "0.0.0.0/0"
