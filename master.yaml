@@ -29,7 +29,6 @@ Parameters:
     Type: "String" 
 
   PMTemplateURL:
-    Default: "https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-jira/infrastructure"
     Description: "Trying running from own directory/workstation."
     Type: "String"
 
