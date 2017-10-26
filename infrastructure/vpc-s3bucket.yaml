@@ -24,42 +24,6 @@ Parameters:
 Resources:
 
   ############################################################################
-  # S3 Backup Data Encrypted Bucket
-  ############################################################################
-
-  S3Backup:
-    Type: "AWS::S3::Bucket"
-    Properties:
-      AccessControl: "Private"
-      VersioningConfiguration:
-        Status: "Enabled"
-      LifecycleConfiguration:
-        Rules:
-        - Id: "MyBackupArchive"
-          Status: "Enabled"
-          ExpirationInDays: '365' # Complete Disposal/Deletion of Data after 1 year
-          Transition:
-            TransitionInDays: '60' # Move Data from S3 bucket to Archive after 60 days.
-            StorageClass: !Ref "PMRegionAStorage"
-    DeletionPolicy: "Retain"
-
-  S3BackupPolicy:
-    Type: "AWS::S3::BucketPolicy"
-    Properties:
-      Bucket: !Ref "S3Backup"
-      PolicyDocument:
-        Statement:
-        - Sid: "DenyUnEncryptedObjectUploads"
-          Effect: "Deny"
-          Principal:
-            AWS: "*"
-          Action: "s3:PutObject"
-          Resource: !Join ["", ["arn:aws:s3:::", !Ref "S3Backup", "/*"]]
-          Condition:
-            StringNotEquals:
-              s3:x-amz-server-side-encryption: "AES256"
-
-  ############################################################################
   # S3 Logging Bucket Data Encrypted Bucket
   # https://forums.aws.amazon.com/thread.jspa?threadID=221113
   # Note : at this time ELB logging does not support server side encryption
@@ -92,6 +56,3 @@ Outputs:
     Description: "S3 Logging Bucket Name"
     Value: !Ref "S3Logging"
 
-  S3Backup:
-    Description: "S3 Backup Bucket Name"
-    Value: !Ref "S3Backup"
