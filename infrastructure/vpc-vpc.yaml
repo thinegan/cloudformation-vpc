@@ -97,7 +97,7 @@ Resources:
     Properties:
       VpcId: !Ref "VPC"
       CidrBlock: !Ref "PMPrivateSubnet1CIDR"
-      AvailabilityZone: !Select [ '1', !GetAZs ]
+      AvailabilityZone: !Select [ '0', !GetAZs ]
       Tags:
       - Key: "Name"
         Value: !Sub "${PMServerEnv}-${PMPrivateSubnet1CIDR}-PrivateSubnet1"
@@ -107,7 +107,7 @@ Resources:
     Properties:
       VpcId: !Ref "VPC"
       CidrBlock: !Ref "PMPrivateSubnet2CIDR"
-      AvailabilityZone: !Select [ '2', !GetAZs ]
+      AvailabilityZone: !Select [ '1', !GetAZs ]
       Tags:
       - Key: "Name"
         Value: !Sub "${PMServerEnv}-${PMPrivateSubnet2CIDR}-PrivateSubnet2"
