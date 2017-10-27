@@ -1,6 +1,3 @@
-# Note : The Cloudformation Security Group IP address is open by default (testing purpose).
-# You should update Security Group Access with your own IP Address to ensure your instances security.
-#
 ---
 AWSTemplateFormatVersion: "2010-09-09"
 Description: >
