@@ -82,21 +82,21 @@ Resources:
         PMServerEnv: !Ref "AWS::StackName"
         PMRegionAStorage: !FindInMap ["RegionMap", !Ref "AWS::Region", "AStorage"]
 
-  # MyVPC:
-  #   Type: "AWS::CloudFormation::Stack"
-  #   DependsOn:
-  #   - "MyS3Bucket"
-  #   Properties:
-  #     TemplateURL: !Sub "${PMTemplateURL}/vpc-vpc.yaml"
-  #     TimeoutInMinutes: '5'
-  #     Parameters:
-  #       PMServerEnv: !Ref "AWS::StackName"
-  #       PMVpcCIDR: !Ref "PMVpcCIDR"
-  #       PMPublicSubnet1CIDR: !Ref "PMPublicSubnet1CIDR"
-  #       PMPublicSubnet2CIDR: !Ref "PMPublicSubnet2CIDR"
-  #       PMPrivateSubnet1CIDR: !Ref "PMPrivateSubnet1CIDR"
-  #       PMPrivateSubnet2CIDR: !Ref "PMPrivateSubnet2CIDR"
-  #       PMFlowLogRole: !GetAtt "MyIAMRole.Outputs.VPCFlowLogRoleArn"
+  MyVPC:
+    Type: "AWS::CloudFormation::Stack"
+    DependsOn:
+    - "MyS3Bucket"
+    Properties:
+      TemplateURL: !Sub "${PMTemplateURL}/vpc-vpc.yaml"
+      TimeoutInMinutes: '5'
+      Parameters:
+        PMServerEnv: !Ref "AWS::StackName"
+        PMVpcCIDR: !Ref "PMVpcCIDR"
+        PMPublicSubnet1CIDR: !Ref "PMPublicSubnet1CIDR"
+        PMPublicSubnet2CIDR: !Ref "PMPublicSubnet2CIDR"
+        PMPrivateSubnet1CIDR: !Ref "PMPrivateSubnet1CIDR"
+        PMPrivateSubnet2CIDR: !Ref "PMPrivateSubnet2CIDR"
+        PMFlowLogRole: !GetAtt "MyIAMRole.Outputs.VPCFlowLogRoleArn"
 
   # MyNACL:
   #   Type: "AWS::CloudFormation::Stack"
