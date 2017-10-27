@@ -98,18 +98,18 @@ Resources:
         PMPrivateSubnet2CIDR: !Ref "PMPrivateSubnet2CIDR"
         PMFlowLogRole: !GetAtt "MyIAMRole.Outputs.VPCFlowLogRoleArn"
 
-  # MyNACL:
-  #   Type: "AWS::CloudFormation::Stack"
-  #   DependsOn:
-  #   - "MyVPC"
-  #   Properties:
-  #     TemplateURL: !Sub "${PMTemplateURL}/vpc-nacl.yaml"
-  #     TimeoutInMinutes: '5'
-  #     Parameters:
-  #       PMServerEnv: !Ref "AWS::StackName"
-  #       PMOWNIP: !Ref "PMOWNIP"
-  #       PMVpcCIDR: !Ref "PMVpcCIDR"
-  #       PMVPC: !GetAtt "MyVPC.Outputs.VPC"
-  #       PMPublicNACL: !GetAtt "MyVPC.Outputs.MyPublicNetworkACL"
-  #       PMPrivateNACL: !GetAtt "MyVPC.Outputs.MyPrivateNetworkACL"
+  MyNACL:
+    Type: "AWS::CloudFormation::Stack"
+    DependsOn:
+    - "MyVPC"
+    Properties:
+      TemplateURL: !Sub "${PMTemplateURL}/vpc-nacl.yaml"
+      TimeoutInMinutes: '5'
+      Parameters:
+        PMServerEnv: !Ref "AWS::StackName"
+        PMOWNIP: !Ref "PMOWNIP"
+        PMVpcCIDR: !Ref "PMVpcCIDR"
+        PMVPC: !GetAtt "MyVPC.Outputs.VPC"
+        PMPublicNACL: !GetAtt "MyVPC.Outputs.MyPublicNetworkACL"
+        PMPrivateNACL: !GetAtt "MyVPC.Outputs.MyPrivateNetworkACL"
 
