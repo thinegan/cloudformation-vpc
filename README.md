@@ -22,6 +22,8 @@ Before you can deploy this process, you need the following:
 ## Tested on the following Region:
  - US East (N. Virginia)
 
+![https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=PHPHelloWorldSample&templateURL=https://s3-us-west-2.amazonaws.com/cloudformation-templates-us-west-2/LAMP_Multi_AZ.template](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)
+
 ![infrastructure-overview](images/Multi-AZ_and_Self-Healing_Atlassian_Jira_with_Docker.png)
 
 The repository consists of a set of nested templates that deploy the following:
