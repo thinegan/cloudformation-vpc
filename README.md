@@ -22,11 +22,9 @@ Before you can deploy this process, you need the following:
 ## Tested on the following Region:
  - US East (N. Virginia)
 
-![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)]
-(https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=buildkite&templateURL=https://s3.amazonaws.com/my-great-stack.json)
+![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=buildkite&templateURL=https://s3.amazonaws.com/my-great-stack.json)
 
-![Launch Stack](images/launch-stack.svg)]
-(https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=myteststack&templateURL=https://s3.amazonaws.com/samplecfntemplates/mytemplate.template)
+![Launch Stack](images/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=myteststack&templateURL=https://s3.amazonaws.com/samplecfntemplates/mytemplate.template)
 
 ![infrastructure-overview](images/Multi-AZ_and_Self-Healing_Atlassian_Jira_with_Docker.png)
 
