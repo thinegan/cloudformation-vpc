@@ -1,4 +1,4 @@
-# Deploying Multi-AZ and Self-Healing Atlassian Jira with Docker
+# VPC with private and public subnets in two Availability Zones
 
 This reference architecture provides a set of YAML templates for deploying the following AWS services :
 - Amazon IAM
