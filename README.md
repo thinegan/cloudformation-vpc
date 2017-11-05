@@ -1,14 +1,10 @@
-# Deploying Multi-AZ and Self-Healing Atlassian Jira with Docker
+# VPC with private and public subnets in two Availability Zones
 
 This reference architecture provides a set of YAML templates for deploying the following AWS services :
 - Amazon IAM
 - Amazon S3
 - Amazon VPC
-- Amazon Security Group & NACL
-- Amazon RDS
-- Amazon ELB
-- Amazon AutoScaling
-- Amazon Route53
+- Amazon NACL
 
 ## Prerequisites Notes
 The Cloudformation Security Group IP address is open by default (testing purpose). You should update the Security Group Access with your own IP Address to ensure your instances security.
@@ -16,13 +12,16 @@ The Cloudformation Security Group IP address is open by default (testing purpose
 Before you can deploy this process, you need the following:
  - Your AWS account must have one VPC available to be created in the selected region
  - Amazon EC2 key pair
- - Installed Domain in Route 53.
- - Installed Certificate (in your selected region & also one in us-east-1) 
 
 ## Tested on the following Region:
  - US East (N. Virginia)
 
-[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=stagingVPC&templateURL=https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-vpc/master.yaml)
+This template describes a VPC with two private and two public subnets.
+
+![infrastructure-overview](images/VPC_with_private_and_public_subnets_in_two_Availability_Zones.png)
+
+
+[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=devVPC&templateURL=https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-vpc/master.yaml)
 
 ![infrastructure-overview](images/Multi-AZ_and_Self-Healing_Atlassian_Jira_with_Docker.png)
 

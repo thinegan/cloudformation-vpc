@@ -213,14 +213,14 @@ Resources:
     Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
-      Domain: "VPC"
+      Domain: "vpc"
 
   MyNATGateway2EIP:
     Type: "AWS::EC2::EIP"
     Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
-      Domain: "VPC"
+      Domain: "vpc"
   
   MyNATGateway1:
     Type: "AWS::EC2::NatGateway"
