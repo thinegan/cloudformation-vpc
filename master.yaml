@@ -25,30 +25,37 @@ Parameters:
     Type: "String"
 
   PMKeyName:
+    Default: "mykey_nv"
     Description: "Enter an existing EC2 KeyPair. Default is mk2acc-nv."
     Type: "String" 
 
   PMTemplateURL:
-    Description: "Trying running from own directory/workstation."
+    Default: "https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-vpc/infrastructure"
+    Description: "S3 Backup Template location"
     Type: "String"
 
   PMVpcCIDR:
+    Default: "10.0.0.0/16"
     Description: "VPC CIDR."
     Type: "String"
 
   PMPublicSubnet1CIDR:
+    Default: "10.0.1.0/24"
     Description: "VPC Public Subnet 1."
     Type: "String"
 
   PMPublicSubnet2CIDR:
+    Default: "10.0.2.0/24"
     Description: "VPC Public Subnet 2."
     Type: "String"
 
   PMPrivateSubnet1CIDR:
+    Default: "10.0.3.0/24"
     Description: "VPC Private Subnet 1."
     Type: "String"
 
   PMPrivateSubnet2CIDR:
+    Default: "10.0.4.0/24"
     Description: "VPC Private Subnet 2."
     Type: "String"
 

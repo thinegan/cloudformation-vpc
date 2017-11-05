@@ -22,7 +22,7 @@ Before you can deploy this process, you need the following:
 ## Tested on the following Region:
  - US East (N. Virginia)
 
-![https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=PHPHelloWorldSample&templateURL=https://s3-us-west-2.amazonaws.com/cloudformation-templates-us-west-2/LAMP_Multi_AZ.template](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)
+[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=stagingVPC&templateURL=https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-vpc/master.yaml)
 
 ![infrastructure-overview](images/Multi-AZ_and_Self-Healing_Atlassian_Jira_with_Docker.png)
 
