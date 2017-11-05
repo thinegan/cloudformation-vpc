@@ -21,9 +21,7 @@ This template describes a VPC with two private and two public subnets.
 ![infrastructure-overview](images/VPC_with_private_and_public_subnets_in_two_Availability_Zones.png)
 
 ###Installation Guide
-1. Launch Stack
-[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=devVPC&templateURL=https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-vpc/master.yaml)
-
+1. [![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=devVPC&templateURL=https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-vpc/master.yaml)
 2. Click Next to proceed with the next step of the wizard.
 3. Specify a name and all parameters for the stack.
 4. Click Next to proceed with the next step of the wizard.
