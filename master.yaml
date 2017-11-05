@@ -12,7 +12,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: >
     This is a master template to create a VPC infrastructure.
 
-    Last Modified: 26th October 2017
+    Last Modified: 5th November 2017
     Author: Thinegan Ratnam <thinegan@thinegan.com>
 
 ###############################################################################################################
@@ -25,9 +25,8 @@ Parameters:
     Type: "String"
 
   PMKeyName:
-    Default: "mykey_nv"
-    Description: "Enter an existing EC2 KeyPair. Default is mk2acc-nv."
-    Type: "String" 
+    Description: "Enter an existing EC2 KeyPair name."
+    Type: "String"
 
   PMTemplateURL:
     Default: "https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-vpc/infrastructure"
