@@ -24,9 +24,9 @@ Parameters:
     Description: "Update this with your own office/home public ip address"
     Type: "String"
 
-  PMKeyName:
-    Description: "Enter an existing EC2 KeyPair name."
-    Type: "String"
+  # PMKeyName:
+  #   Description: "Enter an existing EC2 KeyPair name."
+  #   Type: "String"
 
   PMTemplateURL:
     Default: "https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-vpc/infrastructure"
