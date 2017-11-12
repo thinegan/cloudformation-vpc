@@ -90,43 +90,37 @@ Example using AWS CLI Command :
 ```
 Example Setup:
 
-Stage1 (~ 25 - 35 minutes)
+Stage1 (~ 10 - 15 minutes)
 ===========================
 To create a environment :
 aws cloudformation create-stack \
 --stack-name <env> \
 --capabilities=CAPABILITY_IAM \
---template-body file:////path_to_template//cloudformation-jira//master.yaml
+--template-body file:////path_to_template//cloudformation-vpc//master.yaml
 
 To update a environment :
 aws cloudformation update-stack \
 --stack-name <env> \
 --capabilities=CAPABILITY_IAM \
---template-body file:////path_to_template//cloudformation-jira//master.yaml
+--template-body file:////path_to_template//cloudformation-vpc//master.yaml
 
 To delete a environment :
 aws cloudformation delete-stack --stack-name <env>
 
-<env> - Note :stack-name that can be used are (dev, staging, prod)
+<env> - Note :stack-name that can be used are (devVPC, stagingVPC, prodVPC)
 
 Example :
 aws cloudformation create-stack \
---stack-name dev \
+--stack-name devVPC \
 --capabilities=CAPABILITY_IAM \
---parameters ParameterKey=DomainJiraPrefix,ParameterValue=dev-jira.crytera.com \
---parameters ParameterKey=DomainRdsPrefix,ParameterValue=dev-rds.crytera.com \
---parameters ParameterKey=InstanceType,ParameterValue=t2.medium \
---parameters ParameterKey=PMDatabasePassword,ParameterValue=xxxxxxx \
---parameters ParameterKey=PMDatabaseUsername,ParameterValue=jirastartadmin \
---parameters ParameterKey=PMHostedZone,ParameterValue=crytera.com \
---parameters ParameterKey=PMKeyName_NV,ParameterValue=mykey_nv \
---parameters ParameterKey=PMOWNIP,ParameterValue=192.xx.xx.xx/32 \
+--parameters ParameterKey=PMOWNIP,ParameterValue=0.0.0.0/0 \
 --parameters ParameterKey=PMPrivateSubnet1CIDR,ParameterValue=10.0.3.0/24 \
 --parameters ParameterKey=PMPrivateSubnet2CIDR,ParameterValue=10.0.4.0/24 \
 --parameters ParameterKey=PMPublicSubnet1CIDR,ParameterValue=10.0.1.0/24 \
 --parameters ParameterKey=PMPublicSubnet2CIDR,ParameterValue=10.0.2.0/24 \
+--parameters ParameterKey=PMTemplateURL,ParameterValue=https://s3.amazonaws.com/cf-templates-hyv79l0oex7c-us-east-1/cloudformation-vpc/infrastructure \
 --parameters ParameterKey=PMVpcCIDR,ParameterValue=10.0.0.0/16 \
---template-body file:////path_to_template//cloudformation-jira//master.yaml
+--template-body file:////path_to_template//cloudformation-vpc//master.yaml
 	
 ```
 
@@ -146,7 +140,7 @@ This set of templates deploys the following network design:
 | Private Subnet 1 | 10.0.3.0/24 | 251 | The private subnet in the first Availability Zone |
 | Private Subnet 2 | 10.0.4.0/24 | 251 | The private subnet in the second Availability Zone |
 
-You can adjust the following section of the [master.yaml](master.yaml) template:
+You can adjust the following section of the parameter template:
 
 ### Add a new item to this list
 
