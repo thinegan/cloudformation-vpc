@@ -46,7 +46,7 @@ Parameters:
 
 ####### Condition Setup #######
 Conditions: 
-  UseProdEnv: !Equals [ !Sub "${PMServerEnv}", "prod" ]
+  UseProdEnv: !Equals [ !Sub "${PMServerEnv}", "prodVPC" ]
 
 Resources:
 ####### Create custom VPC and send log to S3 bucket #######
