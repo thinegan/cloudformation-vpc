@@ -102,19 +102,19 @@ Resources:
   #       From: '1024'
   #       To: '65535'
 
-  # ####### INBOUND ICMP Network ACL RULES #######
-  # InboundICMPNACLP:
-  #   Type: "AWS::EC2::NetworkAclEntry"
-  #   Properties:
-  #     NetworkAclId: !Ref "PMPrivateNACL"
-  #     RuleNumber: '500'
-  #     Protocol: "1"
-  #     RuleAction: "allow"
-  #     Egress: "false"
-  #     CidrBlock: "0.0.0.0/0"
-  #     Icmp:
-  #       Code: "-1"
-  #       Type: "-1"
+  ####### INBOUND ICMP Network ACL RULES #######
+  InboundICMPNACLP:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPrivateNACL"
+      RuleNumber: '500'
+      Protocol: "1"
+      RuleAction: "allow"
+      Egress: "false"
+      CidrBlock: "0.0.0.0/0"
+      Icmp:
+        Code: "-1"
+        Type: "-1"
 
   # ####### OUTBOUND HTTP Network ACL RULES #######
   # OutboundHTTPNACLP:
@@ -172,19 +172,19 @@ Resources:
   #       From: '1024'
   #       To: '65535'
 
-  # ####### OUTBOUND ICMP Network ACL RULES #######
-  # OutboundICMPNACLP:
-  #   Type: "AWS::EC2::NetworkAclEntry"
-  #   Properties:
-  #     NetworkAclId: !Ref "PMPrivateNACL"
-  #     RuleNumber: '600'
-  #     Protocol: "1"
-  #     RuleAction: "allow"
-  #     Egress: "true"
-  #     CidrBlock: "0.0.0.0/0"
-  #     Icmp:
-  #       Code: "-1"
-  #       Type: "-1"
+  ####### OUTBOUND ICMP Network ACL RULES #######
+  OutboundICMPNACLP:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPrivateNACL"
+      RuleNumber: '500'
+      Protocol: "1"
+      RuleAction: "allow"
+      Egress: "true"
+      CidrBlock: "0.0.0.0/0"
+      Icmp:
+        Code: "-1"
+        Type: "-1"
 
   # #####################################################################################
   # # Public Network ACL Firewall Protection (inbound and outbound traffic at the subnet level)
@@ -258,19 +258,19 @@ Resources:
   #       From: '1024'
   #       To: '65535'
 
-  # ####### INBOUND ICMP Network ACL RULES #######
-  # InboundICMPNACL:
-  #   Type: "AWS::EC2::NetworkAclEntry"
-  #   Properties:
-  #     NetworkAclId: !Ref "PMPublicNACL"
-  #     RuleNumber: '600'
-  #     Protocol: "1"
-  #     RuleAction: "allow"
-  #     Egress: "false"
-  #     CidrBlock: "0.0.0.0/0"
-  #     Icmp:
-  #       Code: "-1"
-  #       Type: "-1"
+  ####### INBOUND ICMP Network ACL RULES #######
+  InboundICMPNACL:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPublicNACL"
+      RuleNumber: '500'
+      Protocol: "1"
+      RuleAction: "allow"
+      Egress: "false"
+      CidrBlock: "0.0.0.0/0"
+      Icmp:
+        Code: "-1"
+        Type: "-1"
 
   # ####### OUTBOUND HTTP Network ACL RULES #######
   # OutboundHTTPNACL:
@@ -328,17 +328,17 @@ Resources:
   #       From: '1024'
   #       To: '65535'
 
-  # ####### OUTBOUND ICMP Network ACL RULES #######
-  # OutboundICMPNACL:
-  #   Type: "AWS::EC2::NetworkAclEntry"
-  #   Properties:
-  #     NetworkAclId: !Ref "PMPublicNACL"
-  #     RuleNumber: '500'
-  #     Protocol: "1"
-  #     RuleAction: "allow"
-  #     Egress: "true"
-  #     CidrBlock: "0.0.0.0/0"
-  #     Icmp:
-  #       Code: "-1"
-  #       Type: "-1"
+  ####### OUTBOUND ICMP Network ACL RULES #######
+  OutboundICMPNACL:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPublicNACL"
+      RuleNumber: '500'
+      Protocol: "1"
+      RuleAction: "allow"
+      Egress: "true"
+      CidrBlock: "0.0.0.0/0"
+      Icmp:
+        Code: "-1"
+        Type: "-1"
 
