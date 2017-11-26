@@ -95,7 +95,7 @@ Resources:
       Protocol: "6"
       RuleAction: "allow"
       Egress: "false"
-      CidrBlock: !Ref "PMOWNIP"
+      CidrBlock: "0.0.0.0/0"
       PortRange:
         From: '631'
         To: '631'
