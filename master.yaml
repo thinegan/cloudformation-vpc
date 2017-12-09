@@ -65,6 +65,11 @@ Mappings:
       AStorage: "GLACIER"
 ###############################################################################################################
 
+####### Condition Setup #######
+Conditions:
+  UseProdEnv: !Equals [ !Sub "${PMServerEnv}", "prod" ]
+
+
 Resources:
 
   MyIAMRole:
@@ -77,6 +82,7 @@ Resources:
 
   MyS3Bucket:
     Type: "AWS::CloudFormation::Stack"
+    Condition: "UseProdEnv"
     Properties:
       TemplateURL: !Sub "${PMTemplateURL}/vpc-s3bucket.yaml"
       TimeoutInMinutes: '5'
@@ -86,6 +92,7 @@ Resources:
 
   MyVPC:
     Type: "AWS::CloudFormation::Stack"
+    Condition: "UseProdEnv"
     DependsOn:
     - "MyS3Bucket"
     Properties:
@@ -102,6 +109,7 @@ Resources:
 
   MyNACL:
     Type: "AWS::CloudFormation::Stack"
+    Condition: "UseProdEnv"
     DependsOn:
     - "MyVPC"
     Properties:
