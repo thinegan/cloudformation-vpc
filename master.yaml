@@ -119,12 +119,6 @@ Resources:
 
 Outputs:
 
-  MyIAMRoleS3EC2CW:
-    Description: "A reference to SSL Certificate ARN of the region"
-    Value: !GetAtt "MyIAMRole.Outputs.IAMS3EC2CWInstanceProfile"
-    Export:
-      Name: !Sub "${AWS::StackName}-IAMS3EC2CWInstanceProfile"
-
   MyStackName:
     Description: "A reference to Cloudformation Stack Name"
     Value: !Ref "AWS::StackName"
