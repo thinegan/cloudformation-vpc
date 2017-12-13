@@ -55,4 +55,5 @@ Outputs:
   S3Logging:
     Description: "S3 Logging Bucket Name"
     Value: !Ref "S3Logging"
-
+    Export:
+      Name: !Sub "${PMServerEnv}-S3Logging"
