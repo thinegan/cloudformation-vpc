@@ -93,6 +93,8 @@ Outputs:
   IAMS3CWInstanceProfile:
     Description: "Policy to Allow EC2 instance full access to S3 & CloudWatch"
     Value: !Ref "IAMS3CWInstanceProfile"
+    Export:
+      Name: !Sub "${PMServerEnv}-IAMS3CWInstanceProfile"
 
   IAMVPCLogInstanceProfile:
     Description: "Policy to Allow EC2 VPC Logs to CloudWatch"
