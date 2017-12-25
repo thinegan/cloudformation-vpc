@@ -83,7 +83,6 @@ Resources:
       Parameters:
         PMServerEnv: !Ref "AWS::StackName"
         PMRegionAStorage: !FindInMap ["RegionMap", !Ref "AWS::Region", "AStorage"]
-        # PMFlowLogRole: !GetAtt "MyIAMRole.Outputs.VPCFlowLogRoleArn"
 
   MyVPC:
     Type: "AWS::CloudFormation::Stack"
