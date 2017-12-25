@@ -75,14 +75,14 @@ Resources:
       Parameters:
         PMServerEnv: !Ref "AWS::StackName"
 
-  # MyS3Bucket:
-  #   Type: "AWS::CloudFormation::Stack"
-  #   Properties:
-  #     TemplateURL: !Sub "${PMTemplateURL}/vpc-s3bucket.yaml"
-  #     TimeoutInMinutes: '5'
-  #     Parameters:
-  #       PMServerEnv: !Ref "AWS::StackName"
-  #       PMRegionAStorage: !FindInMap ["RegionMap", !Ref "AWS::Region", "AStorage"]
+  MyS3Bucket:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: !Sub "${PMTemplateURL}/vpc-s3bucket.yaml"
+      TimeoutInMinutes: '5'
+      Parameters:
+        PMServerEnv: !Ref "AWS::StackName"
+        PMRegionAStorage: !FindInMap ["RegionMap", !Ref "AWS::Region", "AStorage"]
 
   MyVPC:
     Type: "AWS::CloudFormation::Stack"
