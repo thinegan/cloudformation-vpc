@@ -37,6 +37,19 @@ Resources:
         Status: "Enabled"
     DeletionPolicy: "Retain"
 
+  S3LoggingPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref "S3Logging"
+      PolicyDocument:
+        Statement:
+        - Sid: "AllowLogsObjectUploads"
+          Effect: "Allow"
+          Action: "s3:PutObject"
+          Resource: !Join ["", ["arn:aws:s3:::", !Ref "S3Logging", "/*"]]
+          Principal:
+            AWS: "*"
+
   # S3LoggingPolicy:
   #   Type: "AWS::S3::BucketPolicy"
   #   Properties:
