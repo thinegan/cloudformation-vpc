@@ -86,8 +86,8 @@ Resources:
 
   MyVPC:
     Type: "AWS::CloudFormation::Stack"
-    DependsOn:
-    - "MyS3Bucket"
+    # DependsOn:
+    # - "MyS3Bucket"
     Properties:
       TemplateURL: !Sub "${PMTemplateURL}/vpc-vpc.yaml"
       TimeoutInMinutes: '5'
