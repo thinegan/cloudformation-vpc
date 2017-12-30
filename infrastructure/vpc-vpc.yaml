@@ -306,11 +306,17 @@ Resources:
 
 Outputs:
 
-  VPC: 
+  VPC:
     Description: "A reference to the created VPC"
     Value: !Ref "VPC"
     Export:
       Name: !Sub "${PMServerEnv}-VPC"
+
+  PMVpcCIDR:
+    Description: "A reference to the created PMVpcCIDR"
+    Value: !Ref "PMVpcCIDR"
+    Export:
+      Name: !Sub "${PMServerEnv}-PMVpcCIDR"
 
   MyPublicNetworkACL:
     Description: "A reference to the Public Network ACL"
@@ -318,7 +324,7 @@ Outputs:
     Export:
       Name: !Sub "${PMServerEnv}-MyPublicNetworkACL"
 
-  MyPrivateNetworkACL: 
+  MyPrivateNetworkACL:
     Description: "A reference to the Private Network ACL"
     Value: !Ref "MyPrivateNetworkACL"
     Export:
