@@ -109,7 +109,7 @@ Resources:
       Protocol: "6"
       RuleAction: "allow"
       Egress: "false"
-      CidrBlock: !Ref "PMVpcCIDR"
+      CidrBlock: "0.0.0.0/0"
       PortRange:
         From: '27017'
         To: '27017'
@@ -208,7 +208,7 @@ Resources:
       Protocol: "6"
       RuleAction: "allow"
       Egress: "true"
-      CidrBlock: !Ref "PMVpcCIDR"
+      CidrBlock: "0.0.0.0/0"
       PortRange:
         From: '27017'
         To: '27017'
