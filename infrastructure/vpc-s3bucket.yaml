@@ -17,10 +17,6 @@ Parameters:
     ConstraintDescription: "Choose an Environment from the drop down"
     Type: "String"
 
-  PMRegionAStorage:
-    Description: "A reference to the Region Archive Storage"
-    Type: "String"
-
 Resources:
 
   ############################################################################
