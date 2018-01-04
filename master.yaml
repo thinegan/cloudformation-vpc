@@ -55,14 +55,6 @@ Parameters:
     Type: "String"
 
 ###############################################################################################################
-#
-# For any additional region & Env, you can add by yourself below.
-Mappings:
-  RegionMap:
-    # Default North Virginia
-    us-east-1:
-      # AStorage - The storage class to which you want the object to transition.
-      AStorage: "GLACIER"
 ###############################################################################################################
 
 Resources:

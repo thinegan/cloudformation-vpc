@@ -50,38 +50,6 @@ Resources:
           Principal:
             AWS: "*"
 
-  # S3LoggingPolicy:
-  #   Type: "AWS::S3::BucketPolicy"
-  #   Properties:
-  #     Bucket: !Ref "S3Logging"
-  #     PolicyDocument:
-  #       Statement:
-  #       - Sid: "AWSCloudTrailAclCheck"
-  #         Effect: "Allow"
-  #         Action: "s3:GetBucketAcl"
-  #         Resource: !Join ["", ["arn:aws:s3:::", !Ref "S3Logging", "/*"]]
-  #         Principal:
-  #           Service:
-  #             - "cloudtrail.amazonaws.com"
-  #       - Sid: "AWSCloudTrailWrite"
-  #         Effect: "Allow"
-  #         Action: "s3:PutObject"
-  #         Resource: !Join ["", ["arn:aws:s3:::", !Ref "S3Logging", "/*"]]
-  #         Principal:
-  #           Service:
-  #             - "cloudtrail.amazonaws.com"
-  #         Condition:
-  #           StringEquals:
-  #             s3:x-amz-acl: "bucket-owner-full-control"
-
-        # Statement:
-        # - Sid: "AllowLogsObjectUploads"
-        #   Effect: "Allow"
-        #   Action: "s3:PutObject"
-        #   Resource: !Join ["", ["arn:aws:s3:::", !Ref "S3Logging", "/*"]]
-        #   Principal:
-        #     AWS: "*"
-
 Outputs:
 
   S3Logging:
