@@ -19,7 +19,7 @@ Resources:
     Type: "AWS::IAM::Role"
     Properties:
       RoleName: !Sub "${PMServerEnv}-S3CloudwatchFullAccess"
-      ManagedPolicyArns: 
+      ManagedPolicyArns:
         - "arn:aws:iam::aws:policy/CloudWatchFullAccess"
         - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
       AssumeRolePolicyDocument: 
@@ -99,6 +99,8 @@ Outputs:
   IAMVPCLogInstanceProfile:
     Description: "Policy to Allow EC2 VPC Logs to CloudWatch"
     Value: !Ref "IAMVPCLogInstanceProfile"
+    Export:
+      Name: !Sub "${PMServerEnv}-IAMVPCLogInstanceProfile"
 
   VPCFlowLogRoleArn:
     Description: "Arn VPC Logs to CloudWatch"
