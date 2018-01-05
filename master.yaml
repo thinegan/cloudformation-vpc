@@ -20,7 +20,6 @@ Description: >
 Parameters: 
 
   PMOWNIP:
-    Default: "0.0.0.0/0"
     Description: "Update this with your own office/home public ip address"
     Type: "String"
 
