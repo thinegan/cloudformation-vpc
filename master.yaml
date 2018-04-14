@@ -12,7 +12,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: >
     This is a master template to create a VPC infrastructure.
 
-    Last Modified: 5th November 2017
+    Last Modified: 15th April 2018
     Author: Thinegan Ratnam <thinegan@thinegan.com>
 
 ###############################################################################################################
