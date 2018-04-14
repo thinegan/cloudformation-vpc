@@ -504,6 +504,3 @@ Resources:
       Icmp:
         Code: "-1"
         Type: "-1"
-
-
-

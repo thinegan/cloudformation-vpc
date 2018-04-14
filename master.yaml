@@ -4,8 +4,6 @@
 # Prerequisites
 # Before you can start this process, you need the following:
 # - Your AWS account must have one VPC available to be created in the selected region
-# - Amazon EC2 key pair
-# - Installed Domain in Route 53.
 #
 ---
 AWSTemplateFormatVersion: "2010-09-09"
