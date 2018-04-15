@@ -100,19 +100,23 @@ Resources:
         From: '631'
         To: '631'
 
-  # ####### INBOUND MONGO Network ACL RULES #######
-  # InboundMONGONACL:
-  #   Type: "AWS::EC2::NetworkAclEntry"
-  #   Properties:
-  #     NetworkAclId: !Ref "PMPublicNACL"
-  #     RuleNumber: '320'
-  #     Protocol: "6"
-  #     RuleAction: "allow"
-  #     Egress: "false"
-  #     CidrBlock: "0.0.0.0/0"
-  #     PortRange:
-  #       From: '27017'
-  #       To: '27017'
+  ####### USED RuleNumber INBOUND MONGO Network ACL RULES #######
+  # RuleNumber: '320'
+  ####### USED RuleNumber INBOUND MONGO Network ACL RULES #######
+
+  ####### INBOUND NTP Network ACL RULES #######
+  InboundNTPNACL:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPublicNACL"
+      RuleNumber: '330'
+      Protocol: "17"
+      RuleAction: "allow"
+      Egress: "false"
+      CidrBlock: "0.0.0.0/0"
+      PortRange:
+        From: '123'
+        To: '123'
 
   ####### INBOUND Ephemeral Ports Network ACL RULES #######
   InboundEPHNACL2:
@@ -124,7 +128,20 @@ Resources:
       RuleAction: "allow"
       Egress: "false"
       CidrBlock: "0.0.0.0/0"
-      # CidrBlock: !Ref "PMPrivateSubnet2CIDR"
+      PortRange:
+        From: '1024'
+        To: '65535'
+
+  ####### INBOUND Ephemeral Ports Network ACL RULES (UDP) #######
+  InboundEPHNACL2UDP:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPublicNACL"
+      RuleNumber: '410'
+      Protocol: "17"
+      RuleAction: "allow"
+      Egress: "false"
+      CidrBlock: "0.0.0.0/0"
       PortRange:
         From: '1024'
         To: '65535'
@@ -199,19 +216,24 @@ Resources:
         From: '631'
         To: '631'
 
-  # ####### OUTBOUND MONGO Network ACL RULES #######
-  # OutboundMONGONACL:
-  #   Type: "AWS::EC2::NetworkAclEntry"
-  #   Properties:
-  #     NetworkAclId: !Ref "PMPublicNACL"
-  #     RuleNumber: '320'
-  #     Protocol: "6"
-  #     RuleAction: "allow"
-  #     Egress: "true"
-  #     CidrBlock: "0.0.0.0/0"
-  #     PortRange:
-  #       From: '27017'
-  #       To: '27017'
+  ####### USED RuleNumber OUTBOUND MONGO Network ACL RULES #######
+  # RuleNumber: '320'
+  ####### USED RuleNumber OUTBOUND MONGO Network ACL RULES #######
+
+
+  ####### OUTBOUND NTP Network ACL RULES #######
+  OutboundNTPNACL:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPublicNACL"
+      RuleNumber: '330'
+      Protocol: "6"
+      RuleAction: "allow"
+      Egress: "true"
+      CidrBlock: "0.0.0.0/0"
+      PortRange:
+        From: '123'
+        To: '123'
 
   ####### OUTBOUND Ephemeral Ports Network ACL RULES #######
   OutboundEPHNACL:
@@ -220,6 +242,20 @@ Resources:
       NetworkAclId: !Ref "PMPublicNACL"
       RuleNumber: '400'
       Protocol: "6"
+      RuleAction: "allow"
+      Egress: "true"
+      CidrBlock: "0.0.0.0/0"
+      PortRange:
+        From: '1024'
+        To: '65535'
+
+  ####### OUTBOUND Ephemeral Ports Network ACL RULES (UDP) #######
+  OutboundEPHNACLUDP:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPublicNACL"
+      RuleNumber: '410'
+      Protocol: "17"
       RuleAction: "allow"
       Egress: "true"
       CidrBlock: "0.0.0.0/0"
@@ -329,6 +365,20 @@ Resources:
         From: '1024'
         To: '65535'
 
+  ####### INBOUND Ephemeral Ports Network ACL RULES (UDP) #######
+  InboundEPHNACLPUDP:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPrivateNACL"
+      RuleNumber: '410'
+      Protocol: "17"
+      RuleAction: "allow"
+      Egress: "false"
+      CidrBlock: "0.0.0.0/0"
+      PortRange:
+        From: '1024'
+        To: '65535'
+
   ####### INBOUND ICMP Network ACL RULES #######
   InboundICMPNACLP:
     Type: "AWS::EC2::NetworkAclEntry"
@@ -427,6 +477,20 @@ Resources:
         From: '1024'
         To: '65535'
 
+  ####### OUTBOUND Ephemeral Ports Network ACL RULES (UDP) #######
+  OutboundEPHNACLPUDP:
+    Type: "AWS::EC2::NetworkAclEntry"
+    Properties:
+      NetworkAclId: !Ref "PMPrivateNACL"
+      RuleNumber: '410'
+      Protocol: "17"
+      RuleAction: "allow"
+      Egress: "true"
+      CidrBlock: "0.0.0.0/0"
+      PortRange:
+        From: '1024'
+        To: '65535'
+
   ####### OUTBOUND ICMP Network ACL RULES #######
   OutboundICMPNACLP:
     Type: "AWS::EC2::NetworkAclEntry"
@@ -440,6 +504,3 @@ Resources:
       Icmp:
         Code: "-1"
         Type: "-1"
-
-
-
