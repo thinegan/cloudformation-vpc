@@ -45,8 +45,8 @@ Parameters:
     Type: "String"
 
 ####### Condition Setup #######
-Conditions: 
-  UseProdEnv: !Equals [ !Sub "${PMServerEnv}", "ThineganVPC" ]
+# Conditions: 
+#   UseProdEnv: !Equals [ !Sub "${PMServerEnv}", "ThineganVPC" ]
 
 Resources:
 ####### Create custom VPC and send log to S3 bucket #######
