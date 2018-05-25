@@ -9,8 +9,8 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: >
     This template deploys a VPC, with a pair of public and private subnets spread 
-    across two (Zone A & Zone B)  Availabilty Zones. It deploys an Internet Gateway,
-    with a default route on the public subnets. It deploy NAT Gateway (in both public AZ), 
+    across three ( Zone A, Zone B and Zone C )  Availabilty Zones. It deploys an Internet Gateway,
+    with a default route on the public subnets. It deploy NAT Gateway (in 3 public AZ), 
     and default routes for them in the private subnets.
     
 Parameters:
@@ -44,9 +44,6 @@ Parameters:
     Description: "VPC Flow Log Role Description"
     Type: "String"
 
-####### Condition Setup #######
-# Conditions: 
-#   UseProdEnv: !Equals [ !Sub "${PMServerEnv}", "ThineganVPC" ]
 
 Resources:
 ####### Create custom VPC and send log to S3 bucket #######
@@ -210,21 +207,18 @@ Resources:
 
   MyNATGateway1EIP:
     Type: "AWS::EC2::EIP"
-    # Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
       Domain: "vpc"
 
   MyNATGateway2EIP:
     Type: "AWS::EC2::EIP"
-    # Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
       Domain: "vpc"
   
   MyNATGateway1:
     Type: "AWS::EC2::NatGateway"
-    # Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
       AllocationId:
@@ -235,7 +229,6 @@ Resources:
 
   MyNATGateway2:
     Type: "AWS::EC2::NatGateway"
-    # Condition: "UseProdEnv"
     DependsOn: "GatewayToInternet"
     Properties:
       AllocationId:
@@ -246,7 +239,6 @@ Resources:
 
   MyNatPrivateRoute1:
     Type: "AWS::EC2::Route"
-    # Condition: "UseProdEnv"
     Properties:
       RouteTableId: !Ref "MyPrivateRouteTable1"
       DestinationCidrBlock: "0.0.0.0/0"
@@ -254,7 +246,6 @@ Resources:
 
   MyNatPrivateRoute2:
     Type: "AWS::EC2::Route"
-    # Condition: "UseProdEnv"
     Properties:
       RouteTableId: !Ref "MyPrivateRouteTable2"
       DestinationCidrBlock: "0.0.0.0/0"
@@ -303,17 +294,16 @@ Resources:
       SubnetId: !Ref "PrivateSubnet2"
       NetworkAclId: !Ref "MyPrivateNetworkACL"
 
+Outputs: 
 
-Outputs:
-
-  VPC:
+  VPC: 
     Description: "A reference to the created VPC"
     Value: !Ref "VPC"
     Export:
       Name: !Sub "${PMServerEnv}-VPC"
 
   PMVpcCIDR:
-    Description: "A reference to the created PMVpcCIDR"
+    Description: "A reference to the created VPC/CIDR"
     Value: !Ref "PMVpcCIDR"
     Export:
       Name: !Sub "${PMServerEnv}-PMVpcCIDR"
@@ -324,7 +314,7 @@ Outputs:
     Export:
       Name: !Sub "${PMServerEnv}-MyPublicNetworkACL"
 
-  MyPrivateNetworkACL:
+  MyPrivateNetworkACL: 
     Description: "A reference to the Private Network ACL"
     Value: !Ref "MyPrivateNetworkACL"
     Export:
